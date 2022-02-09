@@ -1,6 +1,6 @@
 let url
 if (process.env.NODE_ENV === 'production') {
-  url = 'https://rails-nuxt-front-app.herokuapp.com'
+  url = 'https://rails-nuxt-back.herokuapp.com'
 } else {
   url = 'http://localhost:3000'
 }
