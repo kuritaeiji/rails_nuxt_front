@@ -1,3 +1,10 @@
+let url
+if (process.env.NODE_ENV === 'production') {
+  url = 'https://rails-nuxt-front-app.herokuapp.com'
+} else {
+  url = 'http://localhost:3000'
+}
+
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -49,7 +56,7 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: process.env.API_URL
+    baseURL: url
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
