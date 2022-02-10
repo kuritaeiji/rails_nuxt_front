@@ -29,6 +29,7 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    '@/assets/scss/main.scss'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -50,7 +51,8 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/i18n'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -59,9 +61,16 @@ export default {
     baseURL: url
   },
 
-  // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
-  vuetify: {
-    customVariables: ['~/assets/variables.scss']
+  i18n: {
+    locales: [
+      { code: 'ja', iso: 'ja_JP', file: 'ja.json' }
+    ],
+    defaultLocale: 'ja',
+    strategy: 'no_prefix',
+    langDir: '@/locales/',
+    vueI18n: {
+      fallbackLocale: 'ja'
+    }
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
