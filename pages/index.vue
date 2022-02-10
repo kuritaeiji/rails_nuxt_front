@@ -1,33 +1,33 @@
 <template>
   <v-container>
-    <v-btn depressed color="primary" @click="getMessage">
-      RailsからAPIを取得する
-    </v-btn>
+    <h2>
+      Usersテーブルの取得
+    </h2>
 
-    <v-card
-      v-for="(message, i) of messages"
-      :key="i"
-      color="grey lighten-4"
-      flat
-      tile
-      class="mb-3"
-    >
-      {{ message }}
-    </v-card>
+    <v-list>
+      <v-list-item v-for="user of users" :key="`user-${user.id}`">
+        <v-list-item-content>
+          {{ user.id }} {{ user.name }} {{ user.email }} {{ dateFormat(user.created_at) }}
+        </v-list-item-content>
+      </v-list-item>
+    </v-list>
   </v-container>
 </template>
 
 <script>
 export default {
-  data () {
-    return {
-      messages: []
-    }
+  async asyncData ({ $axios }) {
+    const users = await $axios.$get('/api/v1/users')
+    return { users }
   },
-  methods: {
-    async getMessage () {
-      const message = await this.$axios.$get('/api/v1/hello')
-      this.messages.push(message)
+  computed: {
+    dateFormat () {
+      return (date) => {
+        const dateTimeFormat = new Intl.DateTimeFormat(
+          'ja', { dateStyle: 'medium', timeStyle: 'short' }
+        )
+        return dateTimeFormat.format(new Date(date))
+      }
     }
   }
 }
