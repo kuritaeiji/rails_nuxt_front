@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <logged-in-header />
+    <logged-in-header-app-bar />
     <v-main class="main-background">
       <nuxt />
     </v-main>
@@ -8,5 +8,6 @@
 </template>
 
 <script>
-export default {}
+export default {
+}
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app flat :color="appBarColor">
+  <v-app-bar app flat clipped-left :color="appBarColor">
     <ui-app-logo />
     <ui-app-title />
 

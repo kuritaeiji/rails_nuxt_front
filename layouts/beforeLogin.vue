@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <before-login-app-bar />
-    <v-main :style="{ backgroundColor: '#F5F5F5' }">
+    <v-main class="main-background">
       <nuxt />
     </v-main>
     <before-login-footer />

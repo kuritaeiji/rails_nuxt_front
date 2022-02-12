@@ -12,6 +12,21 @@
   },
   "pages": {
     "signup": "新規登録",
-    "login": "ログイン"
+    "login": "ログイン",
+    "logout": "ログアウト",
+    "account": {
+      "settings": "アカウント設定",
+      "password": "パスワード設定"
+    },
+    "projects": {
+      "id": {
+        "dashboard": "ダッシュボード",
+        "layouts": "レイアウト",
+        "pages": "ページ",
+        "components": "コンポーネント",
+        "settings": "設定",
+        "help": "ヘルプ"
+      }
+    }
   }
 }
