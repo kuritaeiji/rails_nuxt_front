@@ -41,15 +41,23 @@ export default {
     }
   },
   methods: {
-    login () {
+    async login () {
+      this.isLoading = true
       if (this.isValid) {
-        this.isLoading = true
-        setTimeout(() => {
-          this.$store.dispatch('login')
-          this.$router.replace('/')
-          this.isLoading = false
-        }, 1500)
+        try {
+          const response = await this.$axios.$post('/api/v1/login', this.params)
+          this.authSuccessful(response)
+        } catch (error) {
+          this.authFailure(error)
+        }
       }
+      this.isLoading = false
+    },
+    authSuccessful (response) {
+      console.log(response)
+    },
+    authFailure ({ response }) {
+      console.log(response)
     }
   }
 }

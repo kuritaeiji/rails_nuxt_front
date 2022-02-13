@@ -1,14 +1,17 @@
-export default ({ $axios }) => {
+export default ({ $axios, isDev }) => {
   $axios.onRequest((config) => {
-    console.log(config)
+    if (isDev) {
+      console.log(config)
+    }
   })
 
   $axios.onResponse((config) => {
-    console.log(config)
+    if (isDev) {
+      console.log(config)
+    }
   })
 
   $axios.onError((error) => {
-    debugger
     console.log(error.response)
   })
 }
