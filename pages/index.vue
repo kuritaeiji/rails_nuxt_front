@@ -84,8 +84,8 @@ import { mapGetters } from 'vuex'
 import backgroundImg from '@/assets/images/background.png'
 
 export default {
-  layout ({ store }) {
-    return store.state.loggedIn ? 'loggedIn' : 'welcome'
+  layout ({ $auth }) {
+    return $auth.loggedIn ? 'loggedIn' : 'welcome'
   },
   data () {
     return {

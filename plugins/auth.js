@@ -9,13 +9,21 @@ class Authentication {
     this.$config = $config
   }
 
+  get loggedIn () {
+    return this.isAuthenticated() && this.user
+  }
+
+  get user () {
+    return this.store.getters.currentUser
+  }
+
   login ({ meta: { exp }, user }) {
     this.setStorage(exp)
     this.store.dispatch('setCurrentUser', user)
   }
 
-  logout () {
-    this.$axios.$delete('/api/v1/login')
+  async logout () {
+    await this.$axios.$delete('/api/v1/logout')
     this.removeStorage()
     this.store.dispatch('setCurrentUser', null)
   }
@@ -36,7 +44,7 @@ class Authentication {
   }
 
   removeStorage () {
-    Object.keys.forEach(key => storage.removeItem(key))
+    Object.keys(keys).forEach(key => storage.removeItem(key))
   }
 
   encrypt (exp) {
