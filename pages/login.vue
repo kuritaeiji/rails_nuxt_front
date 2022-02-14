@@ -54,7 +54,8 @@ export default {
       this.isLoading = false
     },
     authSuccessful (response) {
-      console.log(response)
+      this.$auth.login(response)
+      console.log(this.$store.state.current.user)
     },
     authFailure ({ response }) {
       console.log(response)

@@ -6,7 +6,8 @@ export const state = () => ({
     }
   },
   current: {
-    project: null
+    project: null,
+    user: null
   },
   projects: [
     { id: 1, name: 'MyProject01', updatedAt: '2020-04-01T12:00:00+09:00' },
@@ -42,6 +43,9 @@ export const mutations = {
   },
   setCurrentProject (state, payload) {
     state.current.project = payload
+  },
+  setCurrentUser (state, payload) {
+    state.current.user = payload
   }
 }
 
@@ -55,5 +59,8 @@ export const actions = {
   setCurrentProject ({ commit, getters }, routeParams) {
     const project = getters.projectById(Number(routeParams.id))
     commit('setCurrentProject', project)
+  },
+  setCurrentUser ({ commit }, user) {
+    commit('setCurrentUser', user)
   }
 }

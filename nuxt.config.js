@@ -34,6 +34,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    'plugins/auth',
     'plugins/axios',
     'plugins/myInject'
   ],
@@ -85,6 +86,7 @@ export default {
   },
 
   publicRuntimeConfig: {
-    appName: 'BizPanner'
+    appName: process.env.APP_NAME,
+    cryptoKey: process.env.CRYPTO_KEY
   }
 }
