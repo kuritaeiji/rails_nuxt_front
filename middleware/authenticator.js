@@ -4,14 +4,14 @@ export default ({ $auth, route, redirect, store }) => {
   }
 
   if (!$auth.loggedIn) {
-    let msg
+    let message
     if (!$auth.isAuthenticated() && $auth.user) {
-      msg = 'もう一度ログインして下さい'
+      message = 'もう一度ログインして下さい'
       $auth.logout()
     }
 
     if (!$auth.isAuthenticated() && !$auth.user) {
-      msg = 'ログインして下さい'
+      message = 'ログインして下さい'
     }
 
     if ($auth.isAuthenticated() && !$auth.user) {
@@ -19,7 +19,7 @@ export default ({ $auth, route, redirect, store }) => {
     }
 
     store.dispatch('setRememberRoute', route)
-    console.log(msg)
+    store.dispatch('setSnackbar', { message })
     redirect('/login')
   }
 }

@@ -18,6 +18,11 @@ export const state = () => ({
   rememberRoute: {
     name: 'index',
     params: {}
+  },
+  snackbar: {
+    message: '',
+    color: 'error',
+    timeout: -1
   }
 })
 
@@ -40,6 +45,9 @@ export const getters = {
   },
   currentUser (state) {
     return state.current.user
+  },
+  snackbar (state) {
+    return state.snackbar
   }
 }
 
@@ -55,6 +63,9 @@ export const mutations = {
   },
   setRememberRoute (state, payload) {
     state.rememberRoute = payload
+  },
+  setSnackbar (state, payload) {
+    state.snackbar = payload
   }
 }
 
@@ -75,5 +86,10 @@ export const actions = {
   setRememberRoute ({ commit }, route) {
     route = route || { name: 'index', params: {} }
     commit('setRememberRoute', { name: route.name, params: route.params })
+  },
+  setSnackbar ({ commit }, snackbar) {
+    snackbar.color = snackbar.color || 'error'
+    snackbar.timeout = snackbar.timeout || -1
+    commit('setSnackbar', snackbar)
   }
 }

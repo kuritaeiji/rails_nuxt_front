@@ -1,6 +1,7 @@
 <template>
   <before-login-form-card>
     <template #form-card-content>
+      <ui-snackbar />
       <v-form ref="form" v-model="isValid">
         <user-form-email :email.sync="params.auth.email" />
         <user-form-password :password.sync="params.auth.password" />
@@ -58,7 +59,9 @@ export default {
       this.$router.push(this.$store.state.rememberRoute)
     },
     authFailure ({ response }) {
-      console.log(response)
+      if (response.status === 404) {
+        this.$store.dispatch('setSnackbar', { message: 'ユーザーが見つかりません' })
+      }
     }
   }
 }
