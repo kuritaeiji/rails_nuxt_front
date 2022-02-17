@@ -55,7 +55,7 @@ export default {
     },
     authSuccessful (response) {
       this.$auth.login(response)
-      console.log(this.$store.state.current.user)
+      this.$router.push(this.$store.state.rememberRoute)
     },
     authFailure ({ response }) {
       console.log(response)

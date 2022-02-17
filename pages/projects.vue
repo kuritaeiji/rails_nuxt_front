@@ -4,11 +4,11 @@
 
 <script>
 export default {
-  async middleware ({ params, store }) {
+  async middleware ({ params, store, route, redirect }) {
     await store.dispatch('setCurrentProject', params)
-  },
-  validate ({ store }) {
-    return !!store.getters.currentProject
+    if (route.name === 'projects') {
+      redirect('/')
+    }
   }
 }
 </script>

@@ -87,6 +87,7 @@ export default {
   layout ({ $auth }) {
     return $auth.loggedIn ? 'loggedIn' : 'welcome'
   },
+  middleware: 'authenticator',
   data () {
     return {
       backgroundImg,

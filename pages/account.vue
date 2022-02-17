@@ -7,8 +7,10 @@
 <script>
 export default {
   layout: 'loggedIn',
-  validate ({ route }) {
-    return route.name !== 'account'
+  middleware ({ redirect, route }) {
+    if (route.name === 'account') {
+      redirect('/')
+    }
   }
 }
 </script>

@@ -3,10 +3,11 @@ const storage = window.localStorage
 const keys = { exp: 'exp' }
 
 class Authentication {
-  constructor ({ store, $axios, $config }) {
+  constructor ({ store, $axios, $config, error }) {
     this.store = store
     this.$axios = $axios
     this.$config = $config
+    this.error = error
   }
 
   get loggedIn () {
@@ -26,6 +27,10 @@ class Authentication {
     await this.$axios.$delete('/api/v1/logout')
     this.removeStorage()
     this.store.dispatch('setCurrentUser', null)
+  }
+
+  unauthError () {
+    throw this.error({ message: 'unauthorized', statusCode: 401 })
   }
 
   // jwtが有効期限内か返す
@@ -57,6 +62,6 @@ class Authentication {
   }
 }
 
-export default ({ store, $axios, $config }, inject) => {
-  inject('auth', new Authentication({ store, $axios, $config }))
+export default ({ store, $axios, $config, error }, inject) => {
+  inject('auth', new Authentication({ store, $axios, $config, error }))
 }
