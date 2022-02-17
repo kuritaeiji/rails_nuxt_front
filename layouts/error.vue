@@ -1,45 +1,54 @@
 <template>
-  <v-app dark>
-    <h1 v-if="error.statusCode === 404">
-      {{ pageNotFound }}
-    </h1>
-    <h1 v-else>
-      {{ otherError }}
-    </h1>
-    <NuxtLink to="/">
-      Home page
-    </NuxtLink>
-  </v-app>
+  <v-container fluid fill-height class="main-background">
+    <v-row justify="center" align="center">
+      <v-col>
+        <v-card-title class="justify-center">
+          {{ status }}
+        </v-card-title>
+
+        <v-card-text class="text-center">
+          {{ message }}
+        </v-card-text>
+
+        <v-card-actions class="justify-center flex-column">
+          <v-icon>
+            mdi-emoticon-sick-outline
+          </v-icon>
+
+          <v-btn
+            icon
+            x-large
+            color="primary"
+            to="/"
+          >
+            <v-icon>
+              mdi-home
+            </v-icon>
+          </v-btn>
+        </v-card-actions>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
 export default {
-  name: 'EmptyLayout',
-  layout: 'empty',
+  layout: 'none',
   props: {
     error: {
       type: Object,
       default: null
     }
   },
-  data () {
-    return {
-      pageNotFound: '404 Not Found',
-      otherError: 'An error occurred'
-    }
-  },
-  head () {
-    const title =
-      this.error.statusCode === 404 ? this.pageNotFound : this.otherError
-    return {
-      title
+  computed: {
+    status () {
+      return this.error.statusCode
+    },
+    message () {
+      const message = this.error.message
+      const path = `error.${message}`
+      return this.$te(path) ? this.$t(path) : message
     }
   }
 }
 </script>
-
-<style scoped>
-h1 {
-  font-size: 20px;
-}
-</style>

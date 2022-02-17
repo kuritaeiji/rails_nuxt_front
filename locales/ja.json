@@ -28,5 +28,9 @@
         "help": "ヘルプ"
       }
     }
+  },
+  "error": {
+    "unauthorized": "認証に失敗しました",
+    "This page could not be found": "ページが見つかりません"
   }
 }

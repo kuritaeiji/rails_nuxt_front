@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  layout: 'logout',
+  layout: 'none',
   // routeがindexからログアウトする場合はbeforeCreatedを使う
   async beforeCreate () {
     await this.$auth.logout()

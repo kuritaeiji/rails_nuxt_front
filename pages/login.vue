@@ -61,6 +61,8 @@ export default {
     authFailure ({ response }) {
       if (response.status === 404) {
         this.$store.dispatch('setSnackbar', { message: 'ユーザーが見つかりません' })
+      } else {
+        this.$my.errorHandler({ statusCode: response.status, message: response.message })
       }
     }
   }

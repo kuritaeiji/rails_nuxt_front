@@ -1,6 +1,7 @@
 class MyInject {
-  constructor (app) {
+  constructor ({ app, error }) {
     this.app = app
+    this.error = error
   }
 
   pageTitle (routeName) {
@@ -16,8 +17,12 @@ class MyInject {
   projectLinkTo (id, name = 'projects-id-dashboard') {
     return { name, params: { id } }
   }
+
+  errorHandler ({ statusCode, message }) {
+    this.error({ statusCode, message })
+  }
 }
 
-export default ({ app }, inject) => {
-  inject('my', new MyInject(app))
+export default ({ app, error }, inject) => {
+  inject('my', new MyInject({ app, error }))
 }
