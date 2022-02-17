@@ -87,7 +87,7 @@ export default {
   layout ({ $auth }) {
     return $auth.loggedIn ? 'loggedIn' : 'welcome'
   },
-  middleware: 'authenticator',
+  middleware: ['authenticator', 'getProjects'],
   data () {
     return {
       backgroundImg,

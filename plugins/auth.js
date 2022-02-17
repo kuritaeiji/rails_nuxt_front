@@ -27,6 +27,7 @@ class Authentication {
     await this.$axios.$delete('/api/v1/logout')
     this.removeStorage()
     this.store.dispatch('setCurrentUser', null)
+    this.store.dispatch('setProjects', [])
   }
 
   unauthError () {
